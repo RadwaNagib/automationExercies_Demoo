@@ -8,9 +8,11 @@ import org.example.Pages.P02_LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
-
+import Listeners.*;
 import static org.example.Utilities.dataUtility.getJsonData;
 
+
+@Listeners(Custom_Listeners.class)
 public class Tc02_Login_correct_email_and_password extends driverManager {
 
     WebDriver driver;

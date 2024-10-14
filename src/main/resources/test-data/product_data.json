@@ -1,0 +1,17 @@
+{
+  "women_list1" : "DRESS",
+  "women_list2" : "TOPS",
+  "women_list3" : "SAREE" ,
+  "men_list1" : "TSHIRTS" ,
+  "men_list2" : "JEANS" ,
+  "kids_list1" : "DRESS" ,
+  "kids_list2" : "TOPS & SHIRTS",
+  "product_name" : "Blue Top",
+  "category": "Category: Women > Tops" ,
+  "price" : "Rs. 500",
+  "availability" : "Availability:",
+  "condition" : "Condition:",
+  "brand" : "Brand:"
+
+
+}

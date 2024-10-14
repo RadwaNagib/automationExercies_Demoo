@@ -8,8 +8,7 @@ import org.openqa.selenium.WebElement;
 
 import java.io.FileReader;
 
-import static org.example.Utilities.waitUtility.explicityWaitForClickability;
-import static org.example.Utilities.waitUtility.explicityWaitForVisibility;
+import static org.example.Utilities.waitUtility.*;
 
 
 public class utility {
@@ -44,6 +43,21 @@ public class utility {
         explicityWaitForVisibility(driver,locator);
         return findWebElement(driver,locator).getText();
     }
+
+    //TODO: Clicking on element after checking clickability using fluentwait
+    public static void clickmy(WebDriver driver, By locator)
+    {
+        fluentWaitForElement(driver,locator,7,2);
+        findWebElement(driver, locator).click();
+    }
+
+    //TODO: get text from element after checking visibility using fluentwait
+    public static String getTextmy(WebDriver driver,By locator)
+    {
+        fluentWaitForElement(driver,locator,7,2);
+        return findWebElement(driver,locator).getText();
+    }
+
 
 
 
