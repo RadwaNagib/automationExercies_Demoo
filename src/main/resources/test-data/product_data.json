@@ -1,4 +1,5 @@
 {
+  "all_product_message" : "ALL PRODUCTS",
   "women_list1" : "DRESS",
   "women_list2" : "TOPS",
   "women_list3" : "SAREE" ,
@@ -11,7 +12,8 @@
   "price" : "Rs. 500",
   "availability" : "Availability:",
   "condition" : "Condition:",
-  "brand" : "Brand:"
+  "brand" : "Brand:",
+  "search_key" : "dress"
 
 
 }

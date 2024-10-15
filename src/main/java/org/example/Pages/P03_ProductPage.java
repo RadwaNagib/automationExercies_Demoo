@@ -2,9 +2,13 @@ package org.example.Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 //import java.sql.SQLOutput;
 
+import java.util.List;
+
+import static org.example.Utilities.dataUtility.getJsonData;
 import static org.example.Utilities.utility.*;
 
 public class P03_ProductPage {
@@ -48,6 +52,19 @@ public class P03_ProductPage {
     private final By availability=By.xpath("//*[contains(text(),\"Availability:\")]");
     private final By condition=By.xpath("//*[contains(text(),\"Condition:\")]");
     private final By brand=By.xpath("//*[contains(text(),\"Brand:\")]");
+
+    // Find the div with class 'features_items' containing the target images
+    private final By featuresItemsDiv=By.xpath("//div[@class=\"features_items\"]");
+
+    //locate search field
+    private final By search_input=By.id("search_product");
+
+    //locate search image
+    private final By search_button=By.id("submit_search");
+
+    //get search key file json
+    private final String search_key=getJsonData("product_data","search_key");
+
 
     //to click on product button
     public void click_on_product_button()
@@ -157,5 +174,30 @@ public class P03_ProductPage {
         String my_brand_text=getText(driver,brand);
         return my_brand_text;
     }
+
+    //send data inside search input
+    public void enter_search_key(String search_key)
+    {
+        sendData(driver,search_input, search_key);
+    }
+
+    //click on search button
+    public void click_on_search_button(){
+        clicking(driver,search_button);
+    }
+
+    //convert featuresItemsDiv to webElement
+    public WebElement fearuresItemsDiv_ele()
+    {
+       WebElement features_Items_Div_element = findWebElement(driver,featuresItemsDiv);
+        return features_Items_Div_element;
+    }
+
+
+
+
+
+
+
 
 }
