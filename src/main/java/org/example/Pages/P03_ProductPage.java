@@ -3,10 +3,9 @@ package org.example.Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 //import java.sql.SQLOutput;
-
-import java.util.List;
 
 import static org.example.Utilities.dataUtility.getJsonData;
 import static org.example.Utilities.utility.*;
@@ -14,6 +13,7 @@ import static org.example.Utilities.utility.*;
 public class P03_ProductPage {
 
     WebDriver driver;
+    Actions actions;
 
     public P03_ProductPage(WebDriver driver)
     {
@@ -65,12 +65,35 @@ public class P03_ProductPage {
     //get search key file json
     private final String search_key=getJsonData("product_data","search_key");
 
+    //locate first add to cart button
+    private final By first_add_cart =By.xpath("//a[@data-product-id=\"1\"]");
+
+    //locate continue shopping button
+    private final By continue_shopping_button=By.xpath("//button[@data-dismiss=\"modal\"]");
+
+    //locate second add to cart button
+    private final By second_add_cart=By.xpath("//a[@data-product-id=\"2\"]");
+
+    //locate view cart button by text() function
+    private final By view_cart_button=By.xpath("//*[text()=\"View Cart\"]");
 
     //to click on product button
     public void click_on_product_button()
     {
         clicking(driver,product_button);
     }
+
+    //locate product1 ,image, price, quantity, total price
+    private final By product1_image_view_cart=By.xpath("//*[@id=\"product-1\"]/td[1]/a/img");
+    private final By product1_description_view_cart =By.xpath("//*[@id=\"product-1\"]/td[2]/h4/a");
+    private final By product1_price_view_cart=By.xpath("//*[@id=\"product-1\"]/td[3]/p");
+    private final By product1_quantity_view_cart=By.xpath("//*[@id=\"product-1\"]/td[4]/button");
+    private final By product1_total_price_view_cart=By.xpath("//*[@id=\"product-1\"]/td[5]/p");
+//    private final By product2_description_view_cart=By.xpath("");
+//    private final By product2_price_view_cart=By.xpath("");
+//    private final By product2_quantity_view_cart=By.xpath("");
+//    private final By product2_total_price_view_cart=By.xpath("");
+
 
     //get all products text
     public String all_products_txt()
@@ -191,6 +214,69 @@ public class P03_ProductPage {
     {
        WebElement features_Items_Div_element = findWebElement(driver,featuresItemsDiv);
         return features_Items_Div_element;
+    }
+
+    //click on first add cart button
+    public void click_first_add_cart()
+    {
+        //create instance from actions class to simulate advanced user interactions like hovering, clicking, dragging, and more.
+        actions=new Actions(driver);
+        //convert locator to web element
+        WebElement first_add_cart_element =findWebElement(driver, first_add_cart);
+        //hover and click
+        actions.moveToElement(first_add_cart_element).click().perform();
+
+    }
+
+    //click on continue shopping button
+    public void click_on_continue_shopping_button()
+    {
+        clicking(driver,continue_shopping_button);
+    }
+
+    //click on second add cart  button
+    public void click_second_add_cart()
+    {
+        actions=new Actions(driver);
+        WebElement second_add_cart_element=findWebElement(driver,second_add_cart);
+        actions.moveToElement(second_add_cart_element).click().perform();
+    }
+
+    //click on view cart button
+    public void click_view_cart_button()
+    {
+        clicking(driver,view_cart_button);
+    }
+    public boolean product1_image()
+    {
+        WebElement product1_image_element=findWebElement(driver,product1_image_view_cart);
+        WebElement product1_des_element=findWebElement(driver,product1_description_view_cart);
+        return isImageOrDescriptionRelatedToSearchKey(product1_image_element,product1_des_element,getJsonData("product_data","search_key"));
+    }
+
+    //get text from product1_description
+    public String get_description_from_product1()
+    {
+        String des_product1_view_cart =getText(driver, product1_description_view_cart);
+        return des_product1_view_cart;
+    }
+    //get text from product1 price
+    public String get_price_from_product1()
+    {
+        String price_product1_view_cart=getText(driver,product1_price_view_cart);
+        return price_product1_view_cart;
+    }
+    //get text from product1 quantity
+    public String get_quantity_from_product1()
+    {
+        String quantity_product1_view_cart =getText(driver,product1_quantity_view_cart);
+        return quantity_product1_view_cart;
+    }
+    //get text from product1 total
+    public String get_total_from_product1()
+    {
+        String total_product1_view_cart=getText(driver,product1_total_price_view_cart);
+        return total_product1_view_cart;
     }
 
 

@@ -59,7 +59,7 @@ public class utility {
     }
 
     //TODO:     // Method to check if search key is found in any of the image attributes or the description ex:<p>tag
-    public static boolean isImageOrDescriptionRelatedToSearchKey(WebElement img ,WebElement description ,String searchkey) {
+    public static boolean isImageOrDescriptionRelatedToSearchKey(WebElement img  ,WebElement description,String searchkey) {
         //Extract alt ,title,src attributes
         String altText = img.getAttribute("alt");
         String title = img.getAttribute("title");

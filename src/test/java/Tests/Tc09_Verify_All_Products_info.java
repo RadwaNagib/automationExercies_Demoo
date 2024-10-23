@@ -34,6 +34,11 @@ public class Tc09_Verify_All_Products_info extends driverManager {
     private final String condition=getJsonData("product_data","condition");
     private final String brand=getJsonData("product_data","brand");
     private final String my_search_key=getJsonData("product_data","search_key");
+    private final String product1_description =getJsonData("product_data","product1_description");
+    private final String product1_price =getJsonData("product_data","product1_price");
+    private final String product1_quantity =getJsonData("product_data","product1_quantity");
+    private final String product1_total =getJsonData("product_data","product1_total");
+
 
 
 
@@ -119,8 +124,49 @@ public class Tc09_Verify_All_Products_info extends driverManager {
             softAssert.assertEquals(isRelated.booleanValue(),true,"not related");
 
         }
+        softAssert.assertAll();
+
+    }
+
+    @Test
+    public void Add_Products_In_Cart()
+    {
+        SoftAssert softAssert=new SoftAssert();
+        softAssert.assertEquals(driver.getCurrentUrl(),baseurl,"can n't navigate to home page ");
+
+        p03ProductPage.click_on_product_button();
+
+        //hover on first add cart button then click
+        p03ProductPage.click_first_add_cart();
+        p03ProductPage.click_on_continue_shopping_button();
+
+        //hover on second add cart button then click
+        p03ProductPage.click_second_add_cart();
+        p03ProductPage.click_view_cart_button();
+
+        //verify the first product added in cart by its image, description, price, quantity, total
+        softAssert.assertTrue(p03ProductPage.product1_image());
+
+        // assert description not null
+        softAssert.assertNotNull(p03ProductPage.get_description_from_product1(),"description shouldn't null");
+        //assert after delete white space ,still stringr or description not null
+        softAssert.assertFalse(p03ProductPage.get_description_from_product1().trim().isEmpty());
+
+
+        softAssert.assertNotNull(p03ProductPage.get_price_from_product1(),"error on price");
+        softAssert.assertFalse(p03ProductPage.get_price_from_product1().trim().isEmpty());
+
+
+        softAssert.assertNotNull(p03ProductPage.get_quantity_from_product1(),"error on quantity");
+        softAssert.assertFalse(p03ProductPage.get_quantity_from_product1().trim().isEmpty());
+
+
+        softAssert.assertNotNull(p03ProductPage.get_total_from_product1(),"error on total");
+        softAssert.assertFalse(p03ProductPage.get_total_from_product1().trim().isEmpty());
 
         softAssert.assertAll();
+
+
 
     }
 
