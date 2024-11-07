@@ -1,8 +1,5 @@
 package Tests;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.example.DriverManager.driverManager;
 import org.example.Pages.P01_HomePage;
 import org.openqa.selenium.WebDriver;
