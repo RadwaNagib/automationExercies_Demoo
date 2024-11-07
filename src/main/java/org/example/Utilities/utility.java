@@ -8,6 +8,9 @@ import org.openqa.selenium.WebElement;
 
 //import java.io.FileReader;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 import static org.example.Utilities.waitUtility.*;
 
 
@@ -58,7 +61,7 @@ public class utility {
         return findWebElement(driver,locator).getText();
     }
 
-    //TODO:     // Method to check if search key is found in any of the image attributes or the description ex:<p>tag
+    //TODO:   Method to check if search key is found in any of the image attributes or the description ex:<p>tag
     public static boolean isImageOrDescriptionRelatedToSearchKey(WebElement img  ,WebElement description,String searchkey) {
         //Extract alt ,title,src attributes
         String altText = img.getAttribute("alt");
@@ -74,6 +77,24 @@ public class utility {
                 (src != null && src.contains(searchkey)) ||
                 (descriptionText!=null && descriptionText.contains(searchkey)) ;
     }
+
+    //TODO: Method to extract string from web page to file
+    public static void writeToFile(String text,String fileName)
+    {
+        try
+             {
+                FileWriter writer = new FileWriter(fileName, true);// 'true' enables append mode
+                writer.write(text + System.lineSeparator());// Add a new line after each write
+                writer.close();
+            }
+
+        catch (IOException exception)
+        {
+            exception.printStackTrace();
+        }
+
+    }
+
     }
 
 

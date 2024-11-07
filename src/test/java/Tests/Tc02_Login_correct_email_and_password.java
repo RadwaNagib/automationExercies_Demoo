@@ -17,25 +17,16 @@ public class Tc02_Login_correct_email_and_password extends driverManager {
 
     WebDriver driver;
     P02_LoginPage p02LoginPage;
-    ExtentReports extent;
-    ExtentTest test;
 
     private final String baseurl=getJsonData("environment_data","BaseURL");
     private final String email=getJsonData("login_data","mail");
     private final String password=getJsonData("login_data","password");
 
-    @BeforeSuite
-    public void prepare_report()
-    {
-        ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter("extentReport.html");
-        extent = new ExtentReports();
-        extent.attachReporter(htmlReporter);
-    }
 
     @BeforeClass
     public void opendriver()
     {
-        driver=driverManager.getChromeDriver();
+        driver=getChromeDriver();
         driver.navigate().to(baseurl);
         p02LoginPage = new P02_LoginPage(driver);
     }
@@ -83,22 +74,12 @@ public class Tc02_Login_correct_email_and_password extends driverManager {
 
         softAssert.assertAll();
 
-        test=extent.createTest("Tc02_Login_correct_email_and_password","login with valid username and password");
-        test.pass("Test Passed");
     }
 
     @AfterClass
     public void closebrowser()
     {
-        driver.quit();
+        driverManager.quitdriver();
     }
-
-    @AfterSuite
-    public void tearDown()
-    {
-        //Finalize the Extent report and write it to the file
-        extent.flush();
-    }
-
 
 }

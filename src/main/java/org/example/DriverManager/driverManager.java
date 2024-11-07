@@ -10,6 +10,7 @@ static WebDriver driver;
 public static WebDriver getChromeDriver()
 {
     driver=new ChromeDriver();
+    driver.manage().window().maximize();
     return driver;
 
 }

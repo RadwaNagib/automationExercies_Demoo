@@ -22,14 +22,6 @@ public class Tc01_RegisterUser extends driverManager {
     WebDriver driver;
     P01_HomePage p01Register;
 
-
-    //An instance of the ExtentReports library, which is used to generate detailed reports of your test execution.
-    ExtentReports extent;
-
-    //This represents a single test case in ExtentReports. It allows you to log steps, pass/fail status,
-    // and other details related to each test.
-    ExtentTest test;
-
     private final String baseurl=getJsonData("environment_data","BaseURL");
     private final String signup_name=getJsonData("register_data","signup_name");
     private final String signup_email=getJsonData("register_data","signup_mail");
@@ -44,18 +36,11 @@ public class Tc01_RegisterUser extends driverManager {
     private final String my_zipcode=getJsonData("register_data","my_zipcode");
     private final String my_phone=getJsonData("register_data","my_phone_number");
 
-    @BeforeSuite
-    public void prepare_report()
-    {
-        ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter("extentReport.html");
-        extent = new ExtentReports();
-        extent.attachReporter(htmlReporter);
-    }
 
     @BeforeClass
     public void opendriver()
     {
-        driver=driverManager.getChromeDriver();
+        driver=getChromeDriver();
         driver.navigate().to(baseurl);
         p01Register = new P01_HomePage(driver);
     }
@@ -122,6 +107,7 @@ public class Tc01_RegisterUser extends driverManager {
         boolean actual_username_message =p01Register.get_username_in_as_message();
         softassert.assertEquals(actual_username_message, expected_username_message,"radwa not appear");
 
+
         //delete account by clicking on delete account button
         p01Register.Delete_Account_Button();
 
@@ -132,20 +118,11 @@ public class Tc01_RegisterUser extends driverManager {
 
         softassert.assertAll();
 
-        test = extent.createTest("Register_User", "Register test");
-        test.pass("Test Passed");
-
     }
     @AfterClass
     public void closebrowser()
     {
-        driver.quit();
+        driverManager.quitdriver();
     }
 
-    @AfterSuite
-    public void tearDown()
-    {
-        //Finalize the Extent report and write it to the file
-        extent.flush();
-    }
 }

@@ -66,6 +66,8 @@ public class P01_HomePage {
          String mymessage= getText(driver,new_user_signup_msg);
          return mymessage;
       }
+
+
 public String enter_data_on_signup_name(String name)
 {
     return sendData(driver,signup_name,name);
@@ -184,7 +186,7 @@ public void send_data( String mypassword)
     {
         WebElement select_country_element=findWebElement(driver,country);
         Select dropdown=new Select(select_country_element);
-        dropdown.selectByIndex(4);
+        dropdown.selectByIndex(7);
     }
 
     //click on create account button

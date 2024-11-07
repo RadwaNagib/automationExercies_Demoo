@@ -13,7 +13,7 @@ import java.util.List;
 import static org.example.Utilities.dataUtility.getJsonData;
 import static org.example.Utilities.utility.isImageOrDescriptionRelatedToSearchKey;
 
-public class Tc09_Verify_All_Products_info extends driverManager {
+public class Tc_Verify_All_Products_info extends driverManager {
 
     WebDriver driver;
     P03_ProductPage p03ProductPage;
@@ -40,15 +40,10 @@ public class Tc09_Verify_All_Products_info extends driverManager {
     private final String product1_total =getJsonData("product_data","product1_total");
 
 
-
-
-
-
-
     @BeforeTest
     public void opendriver()
     {
-        driver=driverManager.getChromeDriver();
+        driver=getChromeDriver();
         driver.navigate().to(baseurl);
         p03ProductPage=new P03_ProductPage(driver);
     }
@@ -119,7 +114,7 @@ public class Tc09_Verify_All_Products_info extends driverManager {
 
         // Loop through each image and check if it is related to the search key
         for(WebElement img :images) {
-            WebElement description =p03ProductPage.fearuresItemsDiv_ele().findElement(By.tagName("p"));
+            WebElement description =p03ProductPage.fearuresItemsDiv_ele().findElement(By.tagName("py"));
             Boolean isRelated = isImageOrDescriptionRelatedToSearchKey(img,description, my_search_key);
             softAssert.assertEquals(isRelated.booleanValue(),true,"not related");
 
@@ -166,11 +161,8 @@ public class Tc09_Verify_All_Products_info extends driverManager {
 
         softAssert.assertAll();
 
-
-
     }
-
-        @AfterTest
+        @AfterClass
         public void closebrowser()
         {
             driverManager.quitdriver();
