@@ -186,7 +186,7 @@ public void send_data( String mypassword)
     {
         WebElement select_country_element=findWebElement(driver,country);
         Select dropdown=new Select(select_country_element);
-        dropdown.selectByIndex(7);
+        dropdown.selectByIndex(1);
     }
 
     //click on create account button

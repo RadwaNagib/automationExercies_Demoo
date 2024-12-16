@@ -7,6 +7,8 @@ import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import Listeners.*;
 
+import java.time.Instant;
+
 import static org.example.Utilities.dataUtility.getJsonData;
 
 
@@ -14,7 +16,7 @@ import static org.example.Utilities.dataUtility.getJsonData;
 @Listeners(Custom_Listeners.class)
 
 
-public class Tc01_RegisterUser extends driverManager {
+public class    Tc01_RegisterUser extends driverManager {
 
     WebDriver driver;
     P01_HomePage p01Register;
@@ -35,7 +37,7 @@ public class Tc01_RegisterUser extends driverManager {
 
 
     @BeforeClass
-    public void opendriver()
+    public void openDriver()
     {
         driver=getChromeDriver();
         driver.navigate().to(baseurl);
@@ -43,18 +45,18 @@ public class Tc01_RegisterUser extends driverManager {
     }
 
     @Test
-    public  void Register_User()
+    public  void register_User()
     {
         String actual_url=driver.getCurrentUrl();
-        String expecte_durl =baseurl;
+       // String expected_durl =baseurl;
 
-        //create object from softassert
+        //create object from soft assert
         SoftAssert softassert=new SoftAssert();
 
         //verify that home page visible successfully
-       softassert.assertEquals(actual_url, expecte_durl,"error on navigate to homepage");
+       softassert.assertEquals(actual_url, baseurl,"error on navigate to homepage");
 
-        //click on signup/login bttn
+        //click on signup/login button
         p01Register.clickonlogin_signupbttn();
 
         //asser "New User Signup!" appear
@@ -64,7 +66,7 @@ public class Tc01_RegisterUser extends driverManager {
 
         //enter data on name and email then click signup button
         p01Register.enter_data_on_signup_name(signup_name);
-        p01Register.enter_data_on_email(signup_email);
+        p01Register.enter_data_on_email(signup_email+ Instant.now().toEpochMilli() + "@gmail.com");
         p01Register.click_on_signup_button();
 
         //verify enter account information message appear
@@ -109,15 +111,15 @@ public class Tc01_RegisterUser extends driverManager {
         p01Register.Delete_Account_Button();
 
         //verify " ACCOUNT DELETED! message appear
-        String actual_message_accountdeleted=p01Register.Account_Deleted_Message();
-        String expexted_message_accountdeleted="ACCOUNT DELETED!";
-        softassert.assertEquals(actual_message_accountdeleted,expexted_message_accountdeleted,"account deleted message not appear");
+        String actual_message_account_deleted =p01Register.Account_Deleted_Message();
+        String expected_message_account_deleted ="ACCOUNT DELETED!";
+        softassert.assertEquals(actual_message_account_deleted, expected_message_account_deleted,"account deleted message not appear");
 
         softassert.assertAll();
 
     }
     @AfterClass
-    public void closebrowser()
+    public void closeBrowser()
     {
         driverManager.quitdriver();
     }
