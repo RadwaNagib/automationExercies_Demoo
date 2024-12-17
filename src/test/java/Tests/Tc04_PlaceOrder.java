@@ -2,7 +2,7 @@ package tests;
 
 import org.automationexerciestest.drivermanager.DriverManager;
 import org.automationexerciestest.pages.P01_HomePage;
-import org.automationexerciestest.pages.P_PlaceOrder;
+import org.automationexerciestest.pages.P04_PlaceOrder;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -11,9 +11,9 @@ import org.testng.asserts.SoftAssert;
 
 import static org.automationexerciestest.Utilities.DataUtility.getJsonData;
 
-public class TC_Place_Order extends DriverManager {
+public class Tc04_PlaceOrder extends DriverManager {
     WebDriver driver;
-    P_PlaceOrder pPlaceOrder;
+    P04_PlaceOrder pPlaceOrder;
     P01_HomePage p01HomePage;
 
     private final String signup_name=getJsonData("register_data","signup_name");
@@ -26,19 +26,19 @@ public class TC_Place_Order extends DriverManager {
     {
         driver=getChromeDriver();
         driver.get(baseurl);
-        pPlaceOrder=new P_PlaceOrder(driver);
+        pPlaceOrder=new P04_PlaceOrder(driver);
         p01HomePage=new P01_HomePage(driver);
     }
 
     @Test
-    public void register_While_Checkout()
+    public void registerWhileCheckout()
     {
         SoftAssert softAssert=new SoftAssert();
 
         softAssert.assertEquals(baseurl,driver.getCurrentUrl(),"error on baseurl");
 
-        pPlaceOrder.cart_Page_Displayed();
-        pPlaceOrder.checkout_signup();
+        pPlaceOrder.cartPageDisplayed();
+        pPlaceOrder.checkoutSignup();
 
         //fill signup data
         p01HomePage.enter_data_on_signup_name(signup_name);

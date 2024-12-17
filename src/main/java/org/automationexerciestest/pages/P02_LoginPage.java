@@ -22,37 +22,36 @@ public class P02_LoginPage {
     private final By account_deleted_message=By.xpath("//b[text()=\"Account Deleted!\"]");
 
 
-    public void click_on_signup_login_button() {
+    public void clickOnSignupLoginButton() {
         clicking(driver, signup_login_button);
     }
 
     //get text from login to your account message
-    public String get_login_to_your_account_message() {
+    public String getLoginToYourAccountMessage() {
         return getText(driver, login_to_your_account_massage);
     }
 
     //Enter valid email and password to login
-    public void enter_email_password(String mail,String pass)
+    public void enterValidEmailPassword(String mail, String pass)
     {
         sendData(driver, email_field,mail);
         sendData(driver, password_field,pass);
     }
 
     //click on login button
-    public void click_login_button()
-    {
-        clicking(driver,login_button);
+    public void clickLoginButton() {
+        clicking(driver, login_button);
     }
 
     //get logged in as message by using .getPageSource
-    public boolean get_logged_in_as_message() {
+    public boolean getLoggedInAsMessage() {
         String page_source = driver.getPageSource();
         String message;
         return page_source.contains("Logged in as");
     }
 
     //get username message by using .getPageSource
-    public  boolean get_username_in_as_message() {
+    public  boolean getUsernameInAsMessage() {
         String page_source = driver.getPageSource();
         String message;
         return page_source.contains("radwa");
@@ -60,13 +59,13 @@ public class P02_LoginPage {
 
 
     //click on delete account button
-    public void Delete_Account_Button()
+    public void deleteAccountButton()
     {
         clicking(driver,delete_account_button);
     }
 
     //verify account deleted message appear
-    public String Account_Deleted_Message()
+    public String accountDeletedMessage()
     {
         return getText(driver,account_deleted_message);
 

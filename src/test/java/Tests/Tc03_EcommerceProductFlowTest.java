@@ -13,7 +13,7 @@ import java.util.List;
 import static org.automationexerciestest.Utilities.DataUtility.getJsonData;
 import static org.automationexerciestest.Utilities.Utility.isImageOrDescriptionRelatedToSearchKey;
 
-public class Tc_Verify_All_Products_info extends DriverManager {
+public class Tc03_EcommerceProductFlowTest extends DriverManager {
 
     WebDriver driver;
     P03_ProductPage p03ProductPage;
@@ -48,31 +48,44 @@ public class Tc_Verify_All_Products_info extends DriverManager {
         p03ProductPage=new P03_ProductPage(driver);
     }
     @Test
-    public void verify_all_products_and_product_details_page() {
+    public void verifyHomePage() {
         //create instance from soft assert class
         SoftAssert softAssert = new SoftAssert();
 
         String expected_url = "https://automationexercise.com/";
         String actual_url = driver.getCurrentUrl();
         softAssert.assertEquals(actual_url, expected_url, "error during navigate to Home page");
+    }
+
+    @Test
+    public void verifyAllProductsAppear() {
+        //create instance from soft assert class
+        SoftAssert softAssert = new SoftAssert();
 
         //click on product button
-        p03ProductPage.click_on_product_button();
+        p03ProductPage.clickOnProductButton();
 
         //assert that "ALL PRODUCTS" appear
-        softAssert.assertEquals(p03ProductPage.all_products_txt(),all_products_message,"ERROR");
+        softAssert.assertEquals(p03ProductPage.allProductsTxt(), all_products_message, "ALL PRODUCTS message not appear");
 
         //verify on products list
-        softAssert.assertEquals(p03ProductPage.list1_Women(), women_list1,"DRESS NOT APPEAR");
-        softAssert.assertEquals(p03ProductPage.list2_Women(),women_list2,"TOPS NOT APPEAR");
-        softAssert.assertEquals(p03ProductPage.list3_Women(),women_list3,"SAREE NOT APPEAR");
-        softAssert.assertEquals(p03ProductPage.list1_men(),men_list1,"Tshirts NOT APPEAR");
-        softAssert.assertEquals(p03ProductPage.list2_men(),men_list2,"jens NOT APPEAR");
-        softAssert.assertEquals(p03ProductPage.list1_kids(),kids_list1,"dress NOT APPEAR");
-        softAssert.assertEquals(p03ProductPage.list2_kids(),kids_list2,"TOPS & SHIRTS NOT APPEAR");
+        softAssert.assertEquals(p03ProductPage.list1_Women(), women_list1, "DRESS NOT APPEAR");
+        softAssert.assertEquals(p03ProductPage.list2_Women(), women_list2, "TOPS NOT APPEAR");
+        softAssert.assertEquals(p03ProductPage.list3_Women(), women_list3, "SAREE NOT APPEAR");
+        softAssert.assertEquals(p03ProductPage.list1_Men(), men_list1, "Tshirts NOT APPEAR");
+        softAssert.assertEquals(p03ProductPage.list2_Men(), men_list2, "jens NOT APPEAR");
+        softAssert.assertEquals(p03ProductPage.list1_Kids(), kids_list1, "dress NOT APPEAR");
+        softAssert.assertEquals(p03ProductPage.list2_Kids(), kids_list2, "TOPS & SHIRTS NOT APPEAR");
+    }
+
+    @Test
+    public void verifyProductsDetails() {
+
+        //create instance from soft assert class
+        SoftAssert softAssert = new SoftAssert();
 
         //click on view product link
-        p03ProductPage.click_on_view_product();
+        p03ProductPage.clickOnViewProduct();
 
         //assert to navigate to products details page
         String actual_product_details_page=driver.getCurrentUrl();
@@ -80,8 +93,8 @@ public class Tc_Verify_All_Products_info extends DriverManager {
         softAssert.assertEquals(actual_product_details_page,expected_product_details_page,"products details page not appear");
 
         //verify product details is visible
-        softAssert.assertEquals(p03ProductPage.get_product_name(),product_name,"error on product name");
-        softAssert.assertEquals(p03ProductPage.get_category_text(),category,"category not appear");
+        softAssert.assertEquals(p03ProductPage.getProductName(),product_name,"error on product name");
+        softAssert.assertEquals(p03ProductPage.getCategoryTxt(),category,"category not appear");
         softAssert.assertEquals(p03ProductPage.get_price_text(),price,"price not appear");
         softAssert.assertEquals(p03ProductPage.get_availability_text(),availability,"availability not appear");
         softAssert.assertEquals(p03ProductPage.get_condition_text(),condition,"condition not appear");
@@ -91,7 +104,7 @@ public class Tc_Verify_All_Products_info extends DriverManager {
 
     }
     @Test
-    public void Search_products()
+    public void searchProducts()
     {
         //create instance from soft assert class
         SoftAssert softAssert = new SoftAssert();
@@ -100,10 +113,10 @@ public class Tc_Verify_All_Products_info extends DriverManager {
         softAssert.assertEquals(driver.getCurrentUrl(),baseurl,"can't connect to home page");
 
         //click on product button
-        p03ProductPage.click_on_product_button();
+        p03ProductPage.clickOnProductButton();
 
         //verify "ALL PRODUCTS" VISIBLE
-        softAssert.assertEquals(p03ProductPage.all_products_txt(),all_products_message,"all products message not appear");
+        softAssert.assertEquals(p03ProductPage.allProductsTxt(),all_products_message,"all products message not appear");
 
         //enter dress on side search field then click
         p03ProductPage.enter_search_key(my_search_key);
@@ -124,12 +137,12 @@ public class Tc_Verify_All_Products_info extends DriverManager {
     }
 
     @Test
-    public void Add_Products_In_Cart()
+    public void addProductsInCart()
     {
         SoftAssert softAssert=new SoftAssert();
         softAssert.assertEquals(driver.getCurrentUrl(),baseurl,"can n't navigate to home page ");
 
-        p03ProductPage.click_on_product_button();
+        p03ProductPage.clickOnProductButton();
 
         //hover on first add cart button then click
         p03ProductPage.click_first_add_cart();

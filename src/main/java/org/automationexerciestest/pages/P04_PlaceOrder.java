@@ -5,11 +5,11 @@ import org.openqa.selenium.WebDriver;
 
 import static org.automationexerciestest.Utilities.Utility.*;
 
-public class P_PlaceOrder {
+public class P04_PlaceOrder {
 
     WebDriver driver;
 
-    public P_PlaceOrder(WebDriver driver)
+    public P04_PlaceOrder(WebDriver driver)
     {
         this.driver=driver;
     }
@@ -20,7 +20,7 @@ public class P_PlaceOrder {
     private final By proceed_to_checkout_button =By.xpath("//section[@id=\"do_action\"]/div/div/div/a");
     private final By checkout_Register_Login_button =By.xpath("//div[@class=\"modal-body\"]/p[2]/a");
 
-    public void cart_Page_Displayed()
+    public void cartPageDisplayed()
     {
         clicking(driver,product_no_4);
         clicking(driver,view_cart);
@@ -41,7 +41,7 @@ public class P_PlaceOrder {
 
     }
 
-    public void checkout_signup()
+    public void checkoutSignup()
     {
         clicking(driver, proceed_to_checkout_button);
         clicking(driver, checkout_Register_Login_button);

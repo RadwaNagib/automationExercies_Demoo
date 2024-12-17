@@ -6,7 +6,7 @@
     </listeners>
     <test name="testcases" parallel="tests" thread-count="4" >
         <classes>
-            <class name="tests.Tc02_Login_correct_email_and_password"/>
+            <class name="tests.Tc02_LoginWithValidCredential"/>
             <class name="tests.Tc01_RegisterUser"/>
 
         </classes>

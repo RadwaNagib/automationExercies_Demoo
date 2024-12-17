@@ -44,7 +44,7 @@ public class Tc01_RegisterUser extends DriverManager {
     }
 
     @Test
-    public void verify_HomePage() {
+    public void verifyHomePage() {
         String actual_url = driver.getCurrentUrl();
 
         //create object from soft assert
@@ -55,7 +55,7 @@ public class Tc01_RegisterUser extends DriverManager {
     }
 
     @Test
-    public void verify_signup_login_button() {
+    public void verifySignupButton() {
         //click on signup/login button
         p01Register.click_on_login_signup_button();
 
@@ -74,7 +74,7 @@ public class Tc01_RegisterUser extends DriverManager {
     }
 
     @Test
-    public void verify_signup_steps() {
+    public void verifySignupSteps() {
 
         //create object from soft assert
         SoftAssert softassert = new SoftAssert();
@@ -102,19 +102,18 @@ public class Tc01_RegisterUser extends DriverManager {
         String actual_result = p01Register.get_account_created_message();
         String expected_result = "ACCOUNT CREATED!";
         softassert.assertEquals(actual_result, expected_result, "Created account message not appear");
+        softassert.assertAll();
     }
 
     @Test
-    public void verify_continue_button() {
-        //create object from soft assert
-        SoftAssert softassert = new SoftAssert();
+    public void verifyContinueButton() {
 
         //click on continue button
         p01Register.click_on_Continue_button();
     }
 
     @Test
-    public void verify_login_done_successfully() {
+    public void verifyUserCanLogin() {
 
         //create object from soft assert
         SoftAssert softassert = new SoftAssert();
@@ -128,11 +127,11 @@ public class Tc01_RegisterUser extends DriverManager {
         boolean expected_username_message = true;
         boolean actual_username_message = p01Register.get_username_in_as_message();
         softassert.assertEquals(actual_username_message, expected_username_message, "radwa not appear");
-
+        softassert.assertAll();
     }
 
     @Test
-    public void verify_delete_button() {
+    public void verifyDeleteAccount() {
 
         //create object from soft assert
         SoftAssert softassert = new SoftAssert();
@@ -144,8 +143,6 @@ public class Tc01_RegisterUser extends DriverManager {
         String actual_message_account_deleted = p01Register.Account_Deleted_Message();
         String expected_message_account_deleted = "ACCOUNT DELETED!";
         softassert.assertEquals(actual_message_account_deleted, expected_message_account_deleted, "account deleted message not appear");
-
-        softassert.assertAll();
 
     }
 

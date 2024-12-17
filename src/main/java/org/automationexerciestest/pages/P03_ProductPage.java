@@ -57,7 +57,7 @@ public class P03_ProductPage {
     private final By featuresItemsDiv=By.xpath("//div[@class=\"features_items\"]");
 
     //locate search field
-    private final By search_input=By.id("search_product");
+    private final By search_input_field =By.id("search_product");
 
     //locate search image
     private final By search_button=By.id("submit_search");
@@ -66,22 +66,16 @@ public class P03_ProductPage {
     private final String search_key=getJsonData("product_data","search_key");
 
     //locate first add to cart button
-    private final By first_add_cart =By.xpath("//a[@data-product-id=\"1\"]");
+    private final By first_add_cart_button =By.xpath("//a[@data-product-id=\"1\"]");
 
     //locate continue shopping button
     private final By continue_shopping_button=By.xpath("//button[@data-dismiss=\"modal\"]");
 
     //locate second add to cart button
-    private final By second_add_cart=By.xpath("//a[@data-product-id=\"2\"]");
+    private final By second_add_cart_button =By.xpath("//a[@data-product-id=\"2\"]");
 
     //locate view cart button by text() function
     private final By view_cart_button=By.xpath("//*[text()=\"View Cart\"]");
-
-    //to click on product button
-    public void click_on_product_button()
-    {
-        clicking(driver,product_button);
-    }
 
     //locate product1 ,image, price, quantity, total price
     private final By product1_image_view_cart = By.xpath("//*[@id=\"product-1\"]/td[1]/a/img");
@@ -90,9 +84,14 @@ public class P03_ProductPage {
     private final By product1_quantity_view_cart = By.xpath("//*[@id=\"product-1\"]/td[4]/button");
     private final By product1_total_price_view_cart = By.xpath("//*[@id=\"product-1\"]/td[5]/p");
 
+    //to click on product button
+    public void clickOnProductButton()
+    {
+        clicking(driver,product_button);
+    }
 
     //get all products text
-    public String all_products_txt() {
+    public String allProductsTxt() {
         String products_message = getText(driver, all_products_message);
         System.out.println("all products txt:" + products_message);
         return products_message;
@@ -117,39 +116,39 @@ public class P03_ProductPage {
     }
 
     //get text from men list1
-    public String list1_men() {
+    public String list1_Men() {
         press_click(driver, men_panel_collapse);
         return getText(driver, Men_list1);
     }
 
     //get text from men list2
-    public String list2_men() {
+    public String list2_Men() {
         return getText(driver, Men_list2);
     }
 
     //get text from kids list1
-    public String list1_kids() {
+    public String list1_Kids() {
         press_click(driver, plus_kids_panel_collapse);
         return getText(driver, Kids_list1);
     }
 
     //get text from kids list2
-    public String list2_kids() {
+    public String list2_Kids() {
         return getText(driver, Kids_list2);
     }
 
     //click on the first view product
-    public void click_on_view_product()
+    public void clickOnViewProduct()
     {
         clicking(driver,first_view_product);
     }
 
     //get text of product name
-    public String get_product_name() {
+    public String getProductName() {
         return getText(driver, product_name);
     }
     //get category text
-    public String get_category_text()
+    public String getCategoryTxt()
     {
        return getText(driver,category);
     }
@@ -179,7 +178,7 @@ public class P03_ProductPage {
     //send data inside search input
     public void enter_search_key(String search_key)
     {
-        sendData(driver,search_input, search_key);
+        sendData(driver, search_input_field, search_key);
     }
 
     //click on search button
@@ -198,7 +197,7 @@ public class P03_ProductPage {
         //create instance from actions class to simulate advanced user interactions like hovering, clicking, dragging, and more.
         actions = new Actions(driver);
         //convert locator to web element
-        WebElement first_add_cart_element = findWebElement(driver, first_add_cart);
+        WebElement first_add_cart_element = findWebElement(driver, first_add_cart_button);
         //hover and click
         actions.moveToElement(first_add_cart_element).click().perform();
 
@@ -212,7 +211,7 @@ public class P03_ProductPage {
     //click on second add cart  button
     public void click_second_add_cart() {
         actions = new Actions(driver);
-        WebElement second_add_cart_element = findWebElement(driver, second_add_cart);
+        WebElement second_add_cart_element = findWebElement(driver, second_add_cart_button);
         actions.moveToElement(second_add_cart_element).click().perform();
     }
 
