@@ -1,14 +1,14 @@
-package org.example.Utilities;
+package org.automationexerciestest.Utilities;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import static org.example.Utilities.waitUtility.*;
+import static org.automationexerciestest.Utilities.WaitHelper.*;
 
 
-public class utility {
+public class Utility {
 
 
     //ToDo: Convert Locator to Web Element
@@ -42,21 +42,21 @@ public class utility {
     }
 
     //TODO: Clicking on element after checking clickability using fluentwait
-    public static void clickmy(WebDriver driver, By locator)
+    public static void press_click(WebDriver driver, By locator)
     {
         fluentWaitForElement(driver,locator,7,2);
         findWebElement(driver, locator).click();
     }
 
     //TODO: get text from element after checking visibility using fluentwait
-    public static String getTextmy(WebDriver driver,By locator)
+    public static String get_my_text(WebDriver driver, By locator)
     {
         fluentWaitForElement(driver,locator,7,2);
         return findWebElement(driver,locator).getText();
     }
 
     //TODO:   Method to check if search key is found in any of the image attributes or the description ex:<p>tag
-    public static boolean isImageOrDescriptionRelatedToSearchKey(WebElement img  ,WebElement description,String searchkey) {
+    public static boolean isImageOrDescriptionRelatedToSearchKey(WebElement img  ,WebElement description,String search_key) {
         //Extract alt ,title,src attributes
         String altText = img.getAttribute("alt");
         String title = img.getAttribute("title");
@@ -66,10 +66,10 @@ public class utility {
         String descriptionText=description.getText();
 
         //check if the search key appears in any of these attributes
-        return (altText != null && altText.contains(searchkey)) ||
-                (title != null && title.contains(searchkey)) ||
-                (src != null && src.contains(searchkey)) ||
-                (descriptionText!=null && descriptionText.contains(searchkey)) ;
+        return (altText != null && altText.contains(search_key)) ||
+                (title != null && title.contains(search_key)) ||
+                (src != null && src.contains(search_key)) ||
+                (descriptionText!=null && descriptionText.contains(search_key)) ;
     }
 
     //TODO: Method to extract string from web page to file

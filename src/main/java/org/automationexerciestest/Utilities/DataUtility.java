@@ -1,4 +1,4 @@
-package org.example.Utilities;
+package org.automationexerciestest.Utilities;
 
 
 import com.google.gson.JsonElement;
@@ -7,7 +7,7 @@ import com.google.gson.JsonParser;
 
 import java.io.FileReader;
 
-public class dataUtility {
+public class DataUtility {
 
 
     public final static String Test_Data="src/main/resources/test-data/";

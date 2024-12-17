@@ -1,7 +1,7 @@
-package Tests;
+package tests;
 
-import org.example.DriverManager.driverManager;
-import org.example.Pages.P03_ProductPage;
+import org.automationexerciestest.drivermanager.DriverManager;
+import org.automationexerciestest.pages.P03_ProductPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,10 +10,10 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-import static org.example.Utilities.dataUtility.getJsonData;
-import static org.example.Utilities.utility.isImageOrDescriptionRelatedToSearchKey;
+import static org.automationexerciestest.Utilities.DataUtility.getJsonData;
+import static org.automationexerciestest.Utilities.Utility.isImageOrDescriptionRelatedToSearchKey;
 
-public class Tc_Verify_All_Products_info extends driverManager {
+public class Tc_Verify_All_Products_info extends DriverManager {
 
     WebDriver driver;
     P03_ProductPage p03ProductPage;
@@ -41,7 +41,7 @@ public class Tc_Verify_All_Products_info extends driverManager {
 
 
     @BeforeTest
-    public void opendriver()
+    public void openDriver()
     {
         driver=getChromeDriver();
         driver.navigate().to(baseurl);
@@ -56,7 +56,7 @@ public class Tc_Verify_All_Products_info extends driverManager {
         String actual_url = driver.getCurrentUrl();
         softAssert.assertEquals(actual_url, expected_url, "error during navigate to Home page");
 
-        //clcik on product button
+        //click on product button
         p03ProductPage.click_on_product_button();
 
         //assert that "ALL PRODUCTS" appear
@@ -110,11 +110,11 @@ public class Tc_Verify_All_Products_info extends driverManager {
         p03ProductPage.click_on_search_button();
 
         //find all images inside featuresItemsDiv_ele
-        List <WebElement> images=p03ProductPage.fearuresItemsDiv_ele().findElements(By.tagName("img"));
+        List <WebElement> images=p03ProductPage.features_ItemsDiv_ele().findElements(By.tagName("img"));
 
         // Loop through each image and check if it is related to the search key
         for(WebElement img :images) {
-            WebElement description =p03ProductPage.fearuresItemsDiv_ele().findElement(By.tagName("py"));
+            WebElement description =p03ProductPage.features_ItemsDiv_ele().findElement(By.tagName("py"));
             Boolean isRelated = isImageOrDescriptionRelatedToSearchKey(img,description, my_search_key);
             softAssert.assertEquals(isRelated.booleanValue(),true,"not related");
 
@@ -163,9 +163,9 @@ public class Tc_Verify_All_Products_info extends driverManager {
 
     }
         @AfterClass
-        public void closebrowser()
+        public void closeBrowser()
         {
-            driverManager.quitdriver();
+            DriverManager.quitDriver();
         }
 
 

@@ -1,9 +1,9 @@
-package org.example.DriverManager;
+package org.automationexerciestest.drivermanager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class driverManager {
+public class DriverManager {
 
 static WebDriver driver;
 
@@ -16,7 +16,7 @@ public static WebDriver getChromeDriver()
 }
 
 
-public static void quitdriver()
+public static void quitDriver()
 {
     driver.quit();
 }

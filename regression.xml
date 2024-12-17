@@ -1,13 +1,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Tests"  preserve-order="true"  verbose="2" >
+<suite name="tests"  preserve-order="true"  verbose="2" >
 
     <listeners>
-        <listener class-name="Listeners.Custom_Listeners"/>
+        <listener class-name="listeners.Custom_Listeners"/>
     </listeners>
     <test name="testcases" parallel="tests" thread-count="4" >
         <classes>
-            <class name="Tests.Tc02_Login_correct_email_and_password"/>
-            <class name="Tests.Tc01_RegisterUser"/>
+            <class name="tests.Tc02_Login_correct_email_and_password"/>
+            <class name="tests.Tc01_RegisterUser"/>
 
         </classes>
     </test>

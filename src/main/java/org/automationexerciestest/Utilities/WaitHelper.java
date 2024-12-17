@@ -1,4 +1,4 @@
-package org.example.Utilities;
+package org.automationexerciestest.Utilities;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +12,7 @@ import java.time.Duration;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
 
-public class waitUtility {
+public class WaitHelper {
 
     //ToDo: Explicity wait for clickability
     public static void explicityWaitForClickability(WebDriver driver, By Locator )

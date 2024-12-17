@@ -1,16 +1,16 @@
-package Tests;
+package tests;
 
-import org.example.DriverManager.driverManager;
-import org.example.Pages.P02_LoginPage;
+import org.automationexerciestest.drivermanager.DriverManager;
+import org.automationexerciestest.pages.P02_LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
-import Listeners.*;
-import static org.example.Utilities.dataUtility.getJsonData;
+import listeners.*;
+import static org.automationexerciestest.Utilities.DataUtility.getJsonData;
 
 
 @Listeners(Custom_Listeners.class)
-public class Tc02_Login_correct_email_and_password extends driverManager {
+public class Tc02_Login_correct_email_and_password extends DriverManager {
 
     WebDriver driver;
     P02_LoginPage p02LoginPage;
@@ -21,7 +21,7 @@ public class Tc02_Login_correct_email_and_password extends driverManager {
 
 
     @BeforeClass
-    public void opendriver()
+    public void openDriver()
     {
         driver=getChromeDriver();
         driver.navigate().to(baseurl);
@@ -29,7 +29,7 @@ public class Tc02_Login_correct_email_and_password extends driverManager {
     }
 
     @Test
-    public void Login_Correct_Email_and_Password() {
+    public void verify_login_with_valid_data() {
         //verify navigate to home page successfully
         String actual_url = driver.getCurrentUrl();
         String expected_url = "https://automationexercise.com/";
@@ -37,8 +37,8 @@ public class Tc02_Login_correct_email_and_password extends driverManager {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(actual_url, expected_url, "can not navigate to home page");
 
-        //clcik on signup_login button
-        p02LoginPage.clcik_on_signup_login_button();
+        //click on signup_login button
+        p02LoginPage.click_on_signup_login_button();
 
         //verify login to your account message appear
         String actual_message = p02LoginPage.get_login_to_your_account_message();
@@ -65,18 +65,18 @@ public class Tc02_Login_correct_email_and_password extends driverManager {
         p02LoginPage.Delete_Account_Button();
 
         //verify " ACCOUNT DELETED! message appear
-        String actual_message_accountdeleted = p02LoginPage.Account_Deleted_Message();
-        String expexted_message_accountdeleted = "ACCOUNT DELETED!";
-        softAssert.assertEquals(actual_message_accountdeleted, expexted_message_accountdeleted, "account deleted message not appear");
+        String actual_message_account_deleted = p02LoginPage.Account_Deleted_Message();
+        String expected_message_account_deleted = "ACCOUNT DELETED!";
+        softAssert.assertEquals(actual_message_account_deleted, expected_message_account_deleted, "account deleted message not appear");
 
         softAssert.assertAll();
 
     }
 
     @AfterClass
-    public void closebrowser()
+    public void closeBrowser()
     {
-        driverManager.quitdriver();
+        DriverManager.quitDriver();
     }
 
 }

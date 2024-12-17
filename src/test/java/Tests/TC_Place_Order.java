@@ -1,17 +1,17 @@
-package Tests;
+package tests;
 
-import org.example.DriverManager.driverManager;
-import org.example.Pages.P01_HomePage;
-import org.example.Pages.P_PlaceOrder;
+import org.automationexerciestest.drivermanager.DriverManager;
+import org.automationexerciestest.pages.P01_HomePage;
+import org.automationexerciestest.pages.P_PlaceOrder;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import static org.example.Utilities.dataUtility.getJsonData;
+import static org.automationexerciestest.Utilities.DataUtility.getJsonData;
 
-public class TC_Place_Order extends driverManager {
+public class TC_Place_Order extends DriverManager {
     WebDriver driver;
     P_PlaceOrder pPlaceOrder;
     P01_HomePage p01HomePage;
@@ -22,7 +22,7 @@ public class TC_Place_Order extends driverManager {
     private final String baseurl=getJsonData("environment_data","BaseURL");
 
     @BeforeClass
-    public void opendriver()
+    public void openDriver()
     {
         driver=getChromeDriver();
         driver.get(baseurl);
@@ -51,8 +51,8 @@ public class TC_Place_Order extends driverManager {
     }
 
     @AfterClass
-    public void quitderiver()
+    public void closeBrowser()
     {
-        driverManager.quitdriver();
+        DriverManager.quitDriver();
     }
 }

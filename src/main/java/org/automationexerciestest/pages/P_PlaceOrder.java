@@ -1,9 +1,9 @@
-package org.example.Pages;
+package org.automationexerciestest.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import static org.example.Utilities.utility.*;
+import static org.automationexerciestest.Utilities.Utility.*;
 
 public class P_PlaceOrder {
 
@@ -16,15 +16,15 @@ public class P_PlaceOrder {
 
     private final By product_no_4= By.xpath("//a[@data-product-id=\"4\"]");
     private final By view_cart=By.xpath("//p[@class=\"text-center\"]/a/u");
-    private final By shopping_cart_txt=By.xpath("//div[@class=\"breadcrumbs\"]/ol/li[2][@class=\"active\"]");
-    private final By proceed_to_checkout=By.xpath("//section[@id=\"do_action\"]/div/div/div/a");
-    private final By checkout_Register_Login=By.xpath("//div[@class=\"modal-body\"]/p[2]/a");
+    private final By shopping_cart_field =By.xpath("//div[@class=\"breadcrumbs\"]/ol/li[2][@class=\"active\"]");
+    private final By proceed_to_checkout_button =By.xpath("//section[@id=\"do_action\"]/div/div/div/a");
+    private final By checkout_Register_Login_button =By.xpath("//div[@class=\"modal-body\"]/p[2]/a");
 
     public void cart_Page_Displayed()
     {
         clicking(driver,product_no_4);
         clicking(driver,view_cart);
-        String get_shopping_cart_txt=getText(driver,shopping_cart_txt);
+        String get_shopping_cart_txt=getText(driver, shopping_cart_field);
         String shopping=get_shopping_cart_txt.split(" ")[0];
         String cart=get_shopping_cart_txt.split(" ")[1];
         System.out.println("my text is :"+cart);
@@ -43,8 +43,8 @@ public class P_PlaceOrder {
 
     public void checkout_signup()
     {
-        clicking(driver,proceed_to_checkout);
-        clicking(driver,checkout_Register_Login);
+        clicking(driver, proceed_to_checkout_button);
+        clicking(driver, checkout_Register_Login_button);
     }
 
 
