@@ -19,7 +19,7 @@ import static org.automationexerciestest.Utilities.DataUtility.getJsonData;
 public class Tc01_RegisterUser extends DriverManager {
 
     WebDriver driver;
-    P01_HomePage p01Register;
+    P01_HomePage p01HomePage;
 
     private final String baseurl = getJsonData("environment_data", "BaseURL");
     private final String signup_name = getJsonData("register_data", "signup_name");
@@ -40,7 +40,7 @@ public class Tc01_RegisterUser extends DriverManager {
     public void openDriver() {
         driver = getChromeDriver();
         driver.navigate().to(baseurl);
-        p01Register = new P01_HomePage(driver);
+        p01HomePage = new P01_HomePage(driver);
     }
 
     @Test
@@ -57,20 +57,20 @@ public class Tc01_RegisterUser extends DriverManager {
     @Test
     public void verifySignupButton() {
         //click on signup/login button
-        p01Register.click_on_login_signup_button();
+        p01HomePage.click_on_login_signup_button();
 
         //create object from soft assert
         SoftAssert softassert = new SoftAssert();
 
         //asser "New User Signup!" appear
-        String actual_message = p01Register.check_new_user_signup_msg();
+        String actual_message = p01HomePage.check_new_user_signup_msg();
         String expected_message = "New User Signup!";
         softassert.assertEquals(actual_message, expected_message, "message success don't displayed");
 
         //enter data on name and email then click signup button
-        p01Register.enter_data_on_signup_name(signup_name);
-        p01Register.enter_data_on_email(signup_email + Instant.now().toEpochMilli() + "@gmail.com");
-        p01Register.click_on_signup_button();
+        p01HomePage.enter_data_on_signup_name(signup_name);
+        p01HomePage.enter_data_on_email(signup_email + Instant.now().toEpochMilli() + "@gmail.com");
+        p01HomePage.click_on_signup_button();
     }
 
     @Test
@@ -80,26 +80,26 @@ public class Tc01_RegisterUser extends DriverManager {
         SoftAssert softassert = new SoftAssert();
 
         //verify enter account information message appear
-        String actual_message_info = p01Register.get_enter_account_info_message();
+        String actual_message_info = p01HomePage.get_enter_account_info_message();
         String expected_message_info = "ENTER ACCOUNT INFORMATION";
         softassert.assertEquals(actual_message_info, expected_message_info, "account information message not appear successfully");
 
         //enter data on account information message page
-        p01Register.select_radio_button();
-        p01Register.send_data(password);
-        p01Register.full_dropdown_list();
+        p01HomePage.select_radio_button();
+        p01HomePage.send_data(password);
+        p01HomePage.full_dropdown_list();
 
         //select checkbox
-        p01Register.select_checkbox1();
-        p01Register.select_checkbox2();
+        p01HomePage.select_checkbox1();
+        p01HomePage.select_checkbox2();
 
         //enter data to personal information
-        p01Register.send_data_to_address_information(f_name, l_name, my_company, address1, address2, my_state, my_city, my_zipcode, my_phone);
-        p01Register.select_country();
-        p01Register.click_on_create_account_button();
+        p01HomePage.send_data_to_address_information(f_name, l_name, my_company, address1, address2, my_state, my_city, my_zipcode, my_phone);
+        p01HomePage.select_country();
+        p01HomePage.click_on_create_account_button();
 
         //verify account created message appear
-        String actual_result = p01Register.get_account_created_message();
+        String actual_result = p01HomePage.get_account_created_message();
         String expected_result = "ACCOUNT CREATED!";
         softassert.assertEquals(actual_result, expected_result, "Created account message not appear");
         softassert.assertAll();
@@ -109,7 +109,7 @@ public class Tc01_RegisterUser extends DriverManager {
     public void verifyContinueButton() {
 
         //click on continue button
-        p01Register.click_on_Continue_button();
+        p01HomePage.click_on_Continue_button();
     }
 
     @Test
@@ -120,12 +120,12 @@ public class Tc01_RegisterUser extends DriverManager {
 
         //verify logged in as  message appear
         boolean expected_logged_message = true;
-        boolean actual_logged_message = p01Register.get_logged_in_as_message();
+        boolean actual_logged_message = p01HomePage.get_logged_in_as_message();
         softassert.assertEquals(actual_logged_message, expected_logged_message, "logged in as not appear");
 
         //verify username appear
         boolean expected_username_message = true;
-        boolean actual_username_message = p01Register.get_username_in_as_message();
+        boolean actual_username_message = p01HomePage.get_username_in_as_message();
         softassert.assertEquals(actual_username_message, expected_username_message, "radwa not appear");
         softassert.assertAll();
     }
@@ -137,10 +137,10 @@ public class Tc01_RegisterUser extends DriverManager {
         SoftAssert softassert = new SoftAssert();
 
         //delete account by clicking on delete account button
-        p01Register.Delete_Account_Button();
+        p01HomePage.Delete_Account_Button();
 
         //verify " ACCOUNT DELETED! message appear
-        String actual_message_account_deleted = p01Register.Account_Deleted_Message();
+        String actual_message_account_deleted = p01HomePage.Account_Deleted_Message();
         String expected_message_account_deleted = "ACCOUNT DELETED!";
         softassert.assertEquals(actual_message_account_deleted, expected_message_account_deleted, "account deleted message not appear");
 

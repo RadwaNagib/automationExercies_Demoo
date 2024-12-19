@@ -175,11 +175,11 @@ public class Tc03_EcommerceProductFlowTest extends DriverManager {
         softAssert.assertAll();
 
     }
-        @AfterClass
-        public void closeBrowser()
-        {
-            DriverManager.quitDriver();
-        }
+
+    @AfterClass
+    public void closeBrowser() {
+        DriverManager.quitDriver();
+    }
 
 
 
