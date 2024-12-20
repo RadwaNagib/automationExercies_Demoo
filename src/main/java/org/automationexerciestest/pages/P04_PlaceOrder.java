@@ -30,6 +30,7 @@ public class P04_PlaceOrder {
     private final By card_expiry_month_text_field=By.xpath("//*[@class=\"form-control card-expiry-month\"]");
     private final By card_expiry_year_text_field=By.xpath("//*[@class=\"form-control card-expiry-year\"]");
     private final By pay_confirm_order_button=By.xpath("//*[@class=\"form-control btn btn-primary submit-button\"]");
+    private final By order_placed_successfully_text=By.xpath("//*[@id=\"success_message\"]/div");
 
     public void add_Product_To_Cart() {
         //Add products to cart
@@ -66,21 +67,54 @@ public class P04_PlaceOrder {
     //Click 'Register / Login' button
     clicking(driver, checkout_Register_Login_button);
 }
-
+//click on cart button
 public void click_Cart_Button()
 {
     clicking(driver,cart_button);
 }
+
+//verify AddressDetails text is appear
 public String check_AddressDetails_Text()
 {
     return getText(driver,address_details_text);
 }
+//enter data on comment text
 public void write_On_Textarea(String data)
 {
     sendData(driver, comment_textarea_input_text,data);
 }
+//press on place order button
 public void press_Place_Order_Button()
 {
     clicking(driver,place_order_button);
 }
+
+    //get text "Payment" to check visibility
+    public String payment_Text()
+    {
+        return getText(driver,payment_text);
+    }
+
+    //fill full payment data
+    public void payment_Info(String card_name, String card_number, String cvc, String expire_month,String expire_year)
+    {
+        sendData(driver,name_on_card_text_field,card_name);
+        sendData(driver,card_number_text_field,card_number);
+        sendData(driver,card_cvc_text_field,cvc);
+        sendData(driver,card_expiry_month_text_field,expire_month);
+        sendData(driver,card_expiry_year_text_field,expire_year);
+
+    }
+
+    //click pay and confirm button
+    public void click_Pay_And_Confirm_button()
+    {
+        clicking(driver,pay_confirm_order_button);
+    }
+
+    //get text: "Your order has been placed successfully!" to check visibility
+    public String order_Placed_Successfully()
+    {
+        return getText(driver,order_placed_successfully_text);
+    }
 }

@@ -166,7 +166,7 @@ public class P01_HomePage {
     public void send_data_to_address_information(String f_name, String l_name, String my_company, String address1, String address2,
                                                  String my_state, String my_city, String my_zip_code, String my_mobile_number)
     {
-        findWebElement(driver, first_name_field).clear();
+        //findWebElement(driver, first_name_field).clear();
         sendData(driver, first_name_field, f_name);
         sendData(driver, last_name_field, l_name);
         sendData(driver, company_name_field, my_company);
